@@ -4,8 +4,11 @@ Plugin Name: FirePHP for Wordpress
 Plugin URI: https://github.com/msigley/firephp-for-wordpress
 Description: Adds FirePHP Integration, php function fb(...) etc. More information <a href="http://www.firephp.org" target="_blank">http://www.firephp.org</a>
 Author: Matthew Sigley. Based on work by Evalds Urtans.
-Version: 1.0.0
+Version: 1.0.1
 Author URI: https://github.com/msigley
+
+Change Log:
+-Fixed no buffer set issue. (1.0.1) Props to https://github.com/afragen.
 */
 
 //Firebug
@@ -30,6 +33,7 @@ class HandlerFirePHP {
 	
 	public function onFooter() 
 	{
+		if ( 0 < ob_get_level() )
 			ob_flush();
 	}
 }
